@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "893485539781",
+    "project_id": "help-the-needy-33eab",
+    "storage_bucket": "help-the-needy-33eab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893485539781:android:9efc1e36a0f55207b22bac",
+        "android_client_info": {
+          "package_name": "com.HelpTheNeedy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893485539781-srcg992ptdmg4qb5dtqufnabhtu9g899.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.HelpTheNeedy",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "893485539781-6rc3u1g369n4dkdauvu8evgibk965ne2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4SJmo52175ZyTdsc1yIMeA7sOJHlZdlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893485539781-6rc3u1g369n4dkdauvu8evgibk965ne2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

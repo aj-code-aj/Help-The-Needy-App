@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HelpTheNeedy</string>
+    <string name="facebook_app_id">324567986794154</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">231c225c24caf3670a866ed3a214053c</string>
+</resources>
