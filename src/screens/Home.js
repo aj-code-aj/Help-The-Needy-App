@@ -8,7 +8,7 @@ const Home = ({ navigation }) => {
 
   console.log('HOME SCREEN');
   return (
-    <ImageBackground source={require('../../images/bg1.jpeg')} style={Styles.image}>
+    // <ImageBackground source={require('../../images/bg1.jpeg')} style={Styles.image}>
       <View style={Styles.container}>
         <Text style={Styles.smallText}></Text>
         <Button
@@ -16,7 +16,7 @@ const Home = ({ navigation }) => {
           onPress={() => navigation.navigate('Details')}
         />
       </View>
-    </ImageBackground>
+    // </ImageBackground>
   )
 }
 

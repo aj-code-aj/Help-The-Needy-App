@@ -8,7 +8,6 @@ import GoogleIcon from '../assets/svg/googleIcon.svg';
 const PhoneTextInput = ({ onSubmit, onChangeNumber, phone, onInputPressed,
   onGoogleButtonPressed, onFacebookButtonPress }) => {
 
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -19,13 +18,13 @@ const PhoneTextInput = ({ onSubmit, onChangeNumber, phone, onInputPressed,
       </View>
       <Text style={styles.subText}>Connect with</Text>
       <View style={{
-        flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+        flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
       }}>
         <TouchableOpacity
           onPress={onFacebookButtonPress}>
           <FbIcon
             width={50}
-            height={35}
+            height={32}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -37,7 +36,7 @@ const PhoneTextInput = ({ onSubmit, onChangeNumber, phone, onInputPressed,
         </TouchableOpacity>
       </View>
       <ScrollView>
-        <View style={{ width: "100%", paddingHorizontal: 22, paddingVertical: 60 }}>
+        <View style={{ width: "100%", paddingHorizontal: 22, paddingVertical: 40 }}>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
               style={{

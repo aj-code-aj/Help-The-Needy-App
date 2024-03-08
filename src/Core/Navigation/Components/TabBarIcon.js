@@ -63,9 +63,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textStyle: {
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: '900',
-    lineHeight: 14,
+    lineHeight: 12,
     marginTop: 6,
     width: 80,
     height: 15,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   homeStyle: {
     fontSize: 13,
-    fontWeight: '700',
+    fontWeight: '900',
     marginTop: 5,
     lineHeight: 15,
     width: 80,

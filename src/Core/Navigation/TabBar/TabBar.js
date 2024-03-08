@@ -19,9 +19,9 @@ function TabBar({
     {
       id: 0,
       name: '',
-      focusedIcon: <Feather name="home" color={'#74B9FF'} size={23}
+      focusedIcon: <Feather name="home" color={'#74B9FF'} size={22}
       />,
-      notFocusedICon: <Feather name="home" color={'#000000'} size={23} />,
+      notFocusedICon: <Feather name="home" color={'#000000'} size={22} />,
       label: 'Home',
       route: state.routes[0],
       isFocused: state.index === 0,
@@ -42,9 +42,9 @@ function TabBar({
       id: 2,
       name: '',
       focusedIcon: (
-        <FontAwesome6 name="user" color={'#74B9FF'} size={23} />
+        <FontAwesome6 name="user" color={'#74B9FF'} size={22} />
       ),
-      notFocusedICon: <FontAwesome6 name="user" color={'#000000'} size={23} />,
+      notFocusedICon: <FontAwesome6 name="user" color={'#000000'} size={22} />,
       route: state.routes[2],
       label: 'You',
       isFocused: state.index === 2,
@@ -81,7 +81,7 @@ function TabBar({
       <FlatList
         data={tabIconsList}
         bounces={false}
-        style={{}}
+        style={{ height: 57, marginBottom: 5}}
         horizontal
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}

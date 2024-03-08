@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SignupLogin from './Header/SignupLogin';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const OTPTextInput = ({ route }) => {
 
-  const { confirmation } = route.params;
+  const { confirmation, signIn } = route.params;
 
   const [ref1, ref2, ref3, ref4, ref5, ref6] = Array.from({ length: 6 }, () => useRef());
   const [resendTimer, setResendTimer] = useState(60);
   const [OtpSubmit, setOtpSubmit] = useState(true);
+
+  useEffect(() => {
+    Clipboard.setString('');
+  }, [])
 
   useEffect(() => {
     if (OtpSubmit) {
@@ -38,6 +43,7 @@ const OTPTextInput = ({ route }) => {
       setOtpSubmit(true);
       const OtpVal = `${field1}${field2}${field3}${field4}${field5}${field6}`;
       console.log('OTP: ', OtpVal);
+      console.log('CONFIRM OBJ: ', confirmation);
       const res = await confirmation.confirm(OtpVal);
       console.log('VERIFY RESULT:', res);
     }
@@ -45,6 +51,19 @@ const OTPTextInput = ({ route }) => {
       console.log('VERIFY ERROR: ', error);
     }
   }
+
+  const fetchCopiedText = async () => {
+    const text = await Clipboard.getString();
+    console.log('TEXT CLIPBOARD', text);
+    text && setOtpFields({
+      field1: text[0],
+      field2: text[1],
+      field3: text[2],
+      field4: text[3],
+      field5: text[4],
+      field6: text[5]
+    })
+  };
 
   const { field1, field2, field3, field4, field5, field6 } = otpFields;
 
@@ -61,6 +80,7 @@ const OTPTextInput = ({ route }) => {
             value={field1}
             cursorColor='#000000'
             onChangeText={(text) => {
+              fetchCopiedText();
               setOtpFields({ ...otpFields, field1: text })
               if (text.length == 1) {
                 ref2.current.focus();
@@ -151,7 +171,7 @@ const OTPTextInput = ({ route }) => {
         }}>
           <Text style={styles.didNotReceiveOtpText}>Didn't receive the OTP?
           </Text>
-          <TouchableOpacity onPress={() => setResendTimer(60)}>
+          <TouchableOpacity onPress={() => { setResendTimer(60), signIn() }}>
             <Text style={[styles.resendOtpText, { color: resendTimer == 0 ? '#0A79DF' : 'gray' }]}> Resend OTP</Text>
           </TouchableOpacity>
         </View>
@@ -171,6 +191,33 @@ const OTPTextInput = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  inputsContainer: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  codeContainer: {
+    borderWidth: 1,
+    borderRadius: 12,
+    borderColor: "#DFDFDE",
+    height: 60,
+    width: 44,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  codeText: {
+    fontSize: 28,
+  },
+  hiddenInput: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.01,
+  },
+  stick: {
+    width: 2,
+    height: 30,
+    backgroundColor: "green",
   },
   otpView: {
     width: '100%',

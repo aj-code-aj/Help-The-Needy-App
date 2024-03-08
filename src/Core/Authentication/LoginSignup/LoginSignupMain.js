@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Alert, ImageBackground, StyleSheet } from 'react-native';
 import SignupLogin from '../../../Components/Header/SignupLogin';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PhoneTextInput from '../../../Components/PhoneTextInput';
@@ -14,6 +14,8 @@ import { LoginManager, AccessToken, Profile } from 'react-native-fbsdk-next';
 const LoginSignUpMain = ({ navigation }) => {
 
   const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [otpConfirm, setOtpConfirmation] = useState('');
   const PROFILE_IMAGE_SIZE = 150;
 
   useEffect(() => {
@@ -151,11 +153,12 @@ const LoginSignUpMain = ({ navigation }) => {
     }
   };
 
-  async function signIn(phoneNumber) {
+  async function signIn() {
     try {
-      console.log('Final Num', phoneNumber);
-      navigation.navigate('OTPTextInput', { confirmation: confirmation });
-      const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+      // auth().settings.appVerificationDisabledForTesting = true;
+      console.log('Final Num', phone);
+      const confirmation = await auth().signInWithPhoneNumber(`+91 ${phone}`);
+      navigation.navigate('OTPTextInput', { confirmation: confirmation, signIn: signIn });
       console.log('MESAGE SENT: ', confirmation);
     } catch (error) {
       console.log(error.message);
@@ -168,7 +171,8 @@ const LoginSignUpMain = ({ navigation }) => {
 
     if (isNumValid()) {
       console.log('PHONE IS NUMERIC');
-      signIn(`+91 ${phone}`);
+      setLoading(true);
+      signIn();
     }
     else {
       console.warn('NUMBER INCORRECT');
@@ -182,6 +186,7 @@ const LoginSignUpMain = ({ navigation }) => {
   }
 
   return (
+
     <SafeAreaView style={styles.mainContainer}>
       <ImageBackground source={require('../../../../images/bg1.jpeg')}
         style={{ flex: 1, height: 670, }}>

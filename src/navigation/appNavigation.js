@@ -7,16 +7,21 @@ import LoginSignUpMain from '../Core/Authentication/LoginSignup/LoginSignupMain'
 // import LoginSignUpMain from '../Core/Authentication/LoginSignup/LoginSignUpMain';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import SplashScreen from 'react-native-splash-screen';
+import OnBoardingPage from '../Core/OnBoarding/Components/OnBoardingPage';
 
 const RootNavigator = () => {
   console.log('ROOT NAVIGATOR');
   return (
-    // <Stack.Navigator initialRouteName='LoginSignUp'>
-    <Stack.Screen
-      name="LoginSignUp"
-      component={LoginSignUpMain}
-    />
-    // </Stack.Navigator >
+    <Stack.Navigator initialRouteName='LoginSignUp'>
+      <Stack.Screen
+        name="LoginSignUp"
+        component={OnBoardingPage}
+      />
+      <Stack.Screen
+        name="MainNavigator"
+        component={MainNavigation}
+      />
+    </Stack.Navigator>
   )
 }
 
@@ -37,8 +42,8 @@ const AppNavigator = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <MainNavigation />
-      {/* <RootNavigator /> */}
+      {/* <MainNavigation /> */}
+      <RootNavigator />
     </NavigationContainer>
   )
 }
