@@ -9,18 +9,18 @@ function TabBar({
   state,
   descriptors,
   navigation,
+  route,
   unReadMessages = 0,
   unSeenNotifications = 0,
   isPlanActive = false,
   appIcons,
 }) {
-  console.log('TAB BAR ');
+  console.log('TAB BAR ', appIcons);
   const tabIconsList = [
     {
       id: 0,
       name: '',
-      focusedIcon: <Feather name="home" color={'#74B9FF'} size={22}
-      />,
+      focusedIcon: appIcons.TabIcons.Home,
       notFocusedICon: <Feather name="home" color={'#000000'} size={22} />,
       label: 'Home',
       route: state.routes[0],
@@ -81,7 +81,7 @@ function TabBar({
       <FlatList
         data={tabIconsList}
         bounces={false}
-        style={{ height: 57, marginBottom: 5}}
+        style={{ height: 57, marginBottom: 5 }}
         horizontal
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}

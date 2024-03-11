@@ -1,4 +1,5 @@
 import Home from '../assets/svg/house-solid.svg';
+import Feather from 'react-native-vector-icons/Feather';
 
 const _iconSet = {};
 
@@ -6,6 +7,9 @@ const _svgIconSet = {
   Home
 };
 
+const tabIcons = {
+  Home: <Feather name="home" color={'#74B9FF'} size={22} />
+}
 // const _masks = {
 //   ExploreHeaderMask,
 //   MatchCharms,
@@ -44,6 +48,6 @@ const _svgIconSet = {
 // };
 
 const appIcons = {
-  SvgIcon: _svgIconSet,
+  TabIcons: tabIcons
 }
 export default appIcons;

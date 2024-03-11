@@ -11,7 +11,9 @@ import OTPTextInput from '../Components/OTPTextInput';
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
-const MainNavigation = () => {
+const MainNavigation = ({ route }) => {
+  const appIcons = route.params.appIcons;
+
   console.log('MainNavigation');
   return (
     <Stack.Navigator
@@ -28,6 +30,9 @@ const MainNavigation = () => {
           headerTitleStyle: {
             // fontWeight: 'bolder',
           },
+        }}
+        initialParams={{
+          appIcons: appIcons
         }}
       />
       <Stack.Screen

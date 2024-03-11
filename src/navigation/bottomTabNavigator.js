@@ -4,9 +4,10 @@ import { View } from 'react-native'
 import Home from '../screens/Home';
 import Details from '../screens/Details';
 import TabBar from '../Core/Navigation/TabBar/TabBar';
+import appIcons from '../theme/appIcons';
 
 const Tabs = createBottomTabNavigator();
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({ route }) => {
 
   return (
     <View
@@ -20,12 +21,14 @@ const BottomTabNavigator = () => {
         tabBar={props => (
           <TabBar
             {...props}
+            appIcons={appIcons}
           />
         )}
       >
         <Tabs.Screen
           name="Home"
           component={Home}
+          initialParams={{ appIcons: route.params.appIcons }}
         />
         <Tabs.Screen
           name="Donate"
@@ -38,7 +41,7 @@ const BottomTabNavigator = () => {
           initialParams={{ productId: 1 }}
         />
       </Tabs.Navigator>
-    </View>
+    </View >
   )
 }
 
