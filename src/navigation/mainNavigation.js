@@ -5,7 +5,6 @@ import Details from '../screens/Details';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import BottomTabNavigator from './bottomTabNavigator';
 import LoginSignUpMain from '../Core/Authentication/LoginSignup/LoginSignupMain';
-import Entypo from 'react-native-vector-icons/Entypo';
 import OTPTextInput from '../Components/OTPTextInput';
 
 const Stack = createStackNavigator();
@@ -17,6 +16,7 @@ const MainNavigation = ({ route }) => {
   console.log('MainNavigation');
   return (
     <Stack.Navigator
+      initialRouteName='dashboard'
     >
       <Stack.Screen
         name='dashboard'
@@ -27,9 +27,7 @@ const MainNavigation = ({ route }) => {
             backgroundColor: '#74B9FF',
           },
           headerTintColor: '#fff',
-          headerTitleStyle: {
-            // fontWeight: 'bolder',
-          },
+          headerBackVisible: false
         }}
         initialParams={{
           appIcons: appIcons
@@ -44,15 +42,7 @@ const MainNavigation = ({ route }) => {
         }}
         initialParams={'1'}
       />
-      <Stack.Screen
-        name="LoginSignUp"
-        options={{
-          headerShown: true,
-          title: '',
-          headerBackImage: () => <Entypo name="cross" color="black" size={35} />
-        }}
-        component={LoginSignUpMain}
-      />
+
       <Stack.Screen
         name="OTPTextInput"
         options={{

@@ -8,11 +8,18 @@ import SplashScreen from 'react-native-splash-screen';
 import OnBoardingPage from '../Core/OnBoarding/Components/OnBoardingPage';
 import appIcons from '../theme/appIcons';
 import OnBoarding from '../screens/OnBoarding/OnBoarding';
+import LoginSignUpMain from '../Core/Authentication/LoginSignup/LoginSignupMain';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const RootNavigator = () => {
   console.log('ROOT NAVIGATOR');
   return (
-    <Stack.Navigator initialRouteName='OnBoarding'>
+    <Stack.Navigator initialRouteName='OnBoarding'
+      screenOptions={{
+        animationEnabled: false, headerShown: false,
+
+      }}
+    >
       <Stack.Screen
         name="OnBoarding"
         component={OnBoarding}
@@ -24,11 +31,20 @@ const RootNavigator = () => {
         }}
       />
       <Stack.Screen
-        name="MainNavigator"
+        name="MainNavigation"
         component={MainNavigation}
         initialParams={{
           appIcons: appIcons
         }}
+      />
+      <Stack.Screen
+        name="LoginSignUp"
+        options={{
+          headerShown: true,
+          title: '',
+          headerBackImage: () => <Entypo name="cross" color="black" size={35} />
+        }}
+        component={LoginSignUpMain}
       />
     </Stack.Navigator>
   )

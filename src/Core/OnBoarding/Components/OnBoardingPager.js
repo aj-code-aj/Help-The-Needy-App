@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
-import { Text, View } from 'react-native'
+import { Alert, Text, View } from 'react-native'
 import Swiper from 'react-native-swiper'
-import styles from '../styles';
 import OnBoardingPage from './OnBoardingPage';
 import FastImage from 'react-native-fast-image';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -13,7 +12,8 @@ const OnBoardingPager = ({ onSkipPressed, OnBoardDataList }) => {
   const selectedIndex = useRef(0);
 
   function moveNext() {
-    if (selectedIndex.current == 3) {
+    console.log('MOVE NEXT CALLED', selectedIndex.current);
+    if (selectedIndex.current == 2) {
       onSkipPressed()
     } else {
       swiperRef.current.scrollBy(1, true)
@@ -28,10 +28,15 @@ const OnBoardingPager = ({ onSkipPressed, OnBoardDataList }) => {
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <Swiper
         dot={dotComponent}
+        index={0}
+        ref={swiperRef}
+        loop={false}
         activeDot={activeDotComponent}
+        onIndexChanged={(i) => selectedIndex.current = i}
+        autoplay={false}
         paginationStyle={{
           position: 'absolute',
-          bottom: 160, // Adjust as needed
+          bottom: 160,
         }}
       >
         {OnBoardDataList.map((item) => {
@@ -39,6 +44,9 @@ const OnBoardingPager = ({ onSkipPressed, OnBoardDataList }) => {
             <OnBoardingPage
               item={item}
               key={item.id}
+              moveNext={moveNext}
+              onSkipPressed={onSkipPressed}
+              selectedIndex={selectedIndex}
             />
           )
         })}

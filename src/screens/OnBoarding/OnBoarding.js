@@ -11,23 +11,20 @@ const OnBoarding = ({ navigation }) => {
       id: '1',
       heading: `Welcome to HelpTheNeedy`,
       description: "Join our community dedicated to making a difference! Whether it's clothes, food, or education materials, your donations can change lives",
-      image: < Carton width={200} height={200} />,
-      btnText: 'Next',
+      image: < Carton width={250} height={200} />,
+      btnText: 'Continue',
     },
     {
       id: '2',
       heading: 'Find Causes That Matter',
       description: `From supporting local shelters to global relief efforts, HelpTheNeedy makes it easy to find causes that resonate with you. `,
       image: (
-        <Carton2
-          width={180}
-          height={180}
-          style={{
-            marginVertical: 32,
-          }}
+        <Image
+          source={require('../../assets/common/carton2.png')}
+          style={{ width: 150, height: 150, marginVertical: 32 }}
         />
       ),
-      btnText: 'Next',
+      btnText: 'Continue',
     },
     {
       id: '3',
@@ -39,7 +36,7 @@ const OnBoarding = ({ navigation }) => {
           style={{ width: 200, height: 170, marginVertical: 32 }}
         />
       ),
-      btnText: 'Next',
+      btnText: `Let's Go`,
     },
   ];
 

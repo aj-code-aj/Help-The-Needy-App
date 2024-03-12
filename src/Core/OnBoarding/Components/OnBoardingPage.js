@@ -2,8 +2,8 @@ import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { Button } from 'react-native-paper';
 
-const OnBoardingPage = ({ item }) => {
-  console.log('OnBoardingPage', item);
+const OnBoardingPage = ({ item, moveNext, selectedIndex, onSkipPressed }) => {
+  console.log('OnBoardingPage', selectedIndex);
   return (
     <View style={{
       flex: 1,
@@ -21,22 +21,37 @@ const OnBoardingPage = ({ item }) => {
         paddingHorizontal: 30,
         marginBottom: 10
       }}>{item.description}</Text>
+
       <View style={{
         position: 'absolute',
         bottom: 40,
+        width: '75%',
       }}>
-        <Button
-          contentStyle={{ width: '99%' }}
-          labelStyle={{
-            fontSize: 15,
-            color: "#000"
+        <View style={{}}>
+          <TouchableOpacity style={{
+            backgroundColor: '#74B9FF',
+            padding: 12,
+            borderRadius: 12,
           }}
-          mode="elevated" buttonColor="#74B9FF" onPress={() => console.log('Pressed')}>
-          Continue
-        </Button>
-        <Text
-          style={{ textAlign: 'center', marginTop: 12 }}>
-          Got a profile? Sign in</Text>
+            onPress={moveNext}
+          >
+            <Text style={{ color: "#fff", textAlign: 'center' }}>
+              {item.btnText}</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{
+          flexDirection: 'row', marginTop: 12, justifyContent: 'center',
+        }}>
+          <Text
+            style={{ fontSize: 13, color: '#808080' }}>
+            {`Got a profile? `}</Text>
+          <TouchableOpacity
+            onPress={() => onSkipPressed('LoginSignUp')}>
+            <Text
+              style={{ fontWeight: '700', fontSize: 13, color: '#808080' }}>
+              {`SignIn`}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View >
   )

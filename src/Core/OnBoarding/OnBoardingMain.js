@@ -4,9 +4,9 @@ import OnBoardingPager from './Components/OnBoardingPager';
 
 const OnBoardingMain = ({ navigateTo, OnBoardDataList }) => {
   console.log('Onborading Main');
-  const onSkipPressed = async () => {
+  const onSkipPressed = async (screen = 'MainNavigation') => {
     // await authManager.setFirstTimeAppOpened();
-    navigateTo('LoginSignUp');
+    navigateTo(screen);
   }
 
   return (
