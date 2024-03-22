@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, ImageBackground, StyleSheet } from 'react-native';
+import { Alert, StyleSheet, Modal, ActivityIndicator, View, TouchableOpacity, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import SignupLogin from '../../../Components/Header/SignupLogin';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PhoneTextInput from '../../../Components/PhoneTextInput';
@@ -10,12 +10,15 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import { LoginManager, AccessToken, Profile } from 'react-native-fbsdk-next';
+import CustomBackgroundContainer from '../../../../components/Theme';
 
 const LoginSignUpMain = ({ navigation }) => {
 
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState({
+    value: '',
+    isError: false
+  });
   const [loading, setLoading] = useState(false);
-  const [otpConfirm, setOtpConfirmation] = useState('');
   const PROFILE_IMAGE_SIZE = 150;
 
   useEffect(() => {
@@ -55,6 +58,7 @@ const LoginSignUpMain = ({ navigation }) => {
       },
     );
   };
+
 
   const getCurrentProfile = async () => {
     try {
@@ -122,8 +126,9 @@ const LoginSignUpMain = ({ navigation }) => {
   onPhoneNumberPressed = async () => {
     try {
       const phoneNumber = await SmsRetriever.requestPhoneNumber();
+      console.log('PHONE: ', phoneNumber);
       let lastTenChars = phoneNumber.slice(-10);
-      setPhone(lastTenChars);
+      setPhone({ value: lastTenChars, isError: false });
       onSmsListenerPressed();
     } catch (error) {
       console.log(JSON.stringify(error));
@@ -155,28 +160,28 @@ const LoginSignUpMain = ({ navigation }) => {
 
   async function signIn() {
     try {
-      // auth().settings.appVerificationDisabledForTesting = true;
       console.log('Final Num', phone);
-      const confirmation = await auth().signInWithPhoneNumber(`+91 ${phone}`);
+      setLoading(false);
+      const confirmation = await auth().signInWithPhoneNumber(`+91 ${phone.value}`);
       navigation.navigate('OTPTextInput', { confirmation: confirmation, signIn: signIn });
       console.log('MESAGE SENT: ', confirmation);
     } catch (error) {
+      setLoading(false);
       console.log(error.message);
     }
   }
 
-  const isNumValid = () => ((/^[0-9]+$/.test(phone)) && (phone.length) == 10)
+  const isNumValid = () => ((/^[0-9]+$/.test(phone.value)) && (phone.value.length) == 10)
 
   const handleSubmitPhone = () => {
-
     if (isNumValid()) {
       console.log('PHONE IS NUMERIC');
       setLoading(true);
       signIn();
     }
     else {
-      console.warn('NUMBER INCORRECT');
-      Alert.alert('Mobile Number is Invalid !');
+      // setPhone((prev) => ({ ...prev, isError: true }))
+      Alert.alert('INVALID NO')
     }
   }
 
@@ -188,19 +193,52 @@ const LoginSignUpMain = ({ navigation }) => {
   return (
 
     <SafeAreaView style={styles.mainContainer}>
-      <ImageBackground source={require('../../../../images/bg1.jpeg')}
-        style={{ flex: 1, height: 670, }}>
-        <SignupLogin heading={`Create an account\n or sign in`} />
-        <PhoneTextInput
-          onChangeNumber={handlePhoneText}
-          phone={phone}
-          onSubmit={handleSubmitPhone}
-          onInputPressed={onPhoneNumberPressed}
-          onGoogleButtonPressed={signInWithGoogle}
-          onFacebookButtonPress={loginWithFacebook}
-        />
-      </ImageBackground>
-    </SafeAreaView>
+      <CustomBackgroundContainer>
+        {loading ? (
+          <Modal transparent={true}>
+            <View style={{
+              flex: 1, justifyContent: 'center', alignItems:
+                'center',
+              backgroundColor: `rgba(0,0,0,${0.2})`
+            }}>
+              <ActivityIndicator color="#1F35D8" size={50} />
+            </View>
+          </Modal>
+        ) :
+          (
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+              < KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              >
+                <SignupLogin heading={`Create an account\n or sign in`} />
+                <PhoneTextInput
+                  onChangeNumber={handlePhoneText}
+                  phone={phone}
+                  onSubmit={handleSubmitPhone}
+                  onInputPressed={onPhoneNumberPressed}
+                  onGoogleButtonPressed={signInWithGoogle}
+                  onFacebookButtonPress={loginWithFacebook}
+                />
+                <TouchableOpacity
+                  onPress={handleSubmitPhone}
+                  style={{
+                    backgroundColor: "#0A79DF",
+                    paddingVertical: 12,
+                    alignItems: "center",
+                    borderRadius: 20,
+                    marginHorizontal: 27,
+                    marginBottom: 45
+                  }}
+                >
+                  <Text style={{ fontSize: 17, color: "#fff" }}>Get OTP</Text>
+                </TouchableOpacity>
+              </KeyboardAvoidingView>
+            </ScrollView>
+          )
+        }
+      </CustomBackgroundContainer>
+    </SafeAreaView >
   )
 }
 

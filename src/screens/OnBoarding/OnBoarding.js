@@ -41,7 +41,7 @@ const OnBoarding = ({ navigation }) => {
   ];
 
   const navigateTo = screenName => {
-    navigation.navigate(screenName);
+    navigation.replace(screenName);
   };
 
   return (

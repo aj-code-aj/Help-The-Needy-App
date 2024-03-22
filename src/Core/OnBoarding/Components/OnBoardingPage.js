@@ -19,7 +19,8 @@ const OnBoardingPage = ({ item, moveNext, selectedIndex, onSkipPressed }) => {
         color: '#808080', textAlign: 'center',
         marginTop: 32,
         paddingHorizontal: 30,
-        marginBottom: 10
+        marginBottom: 10,
+        lineHeight: 20
       }}>{item.description}</Text>
 
       <View style={{

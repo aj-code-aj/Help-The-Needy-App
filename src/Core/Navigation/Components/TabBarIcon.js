@@ -32,7 +32,7 @@ const TabBarIcon = ({ isFocused, route, onPress, icon, title }) => {
           <View
             style={[
               styles.containerStyle,
-              title === 'Donate' && styles.centerButton,
+              title === 'Help' && styles.centerButton,
             ]}>
             {icon}
             <Text
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   },
   centerButton: {
     position: 'absolute',
+    letterSpacing: 12,
     bottom: 20, // Adjust the position of the center button vertically
     width: 70, // Adjust the width of the center button as needed
     height: 40, // Adjust the height of the center button as needed

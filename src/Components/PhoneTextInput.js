@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { TextInput } from 'react-native-paper'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FbIcon from '../assets/svg/facebookIcon.svg';
 import GoogleIcon from '../assets/svg/googleIcon.svg';
 
-const PhoneTextInput = ({ onSubmit, onChangeNumber, phone, onInputPressed,
+const PhoneTextInput = ({ onChangeNumber, phone, onInputPressed,
   onGoogleButtonPressed, onFacebookButtonPress }) => {
 
   return (
@@ -80,26 +80,14 @@ const PhoneTextInput = ({ onSubmit, onChangeNumber, phone, onInputPressed,
                 theme={{ colors: { primary: '#74B9FF' } }}
                 selectionColor="#74B9FF"
                 keyboardType="numeric"
-                value={phone}
+                value={phone.value}
               />
+              {phone.isError && <Text style={{ color: 'red', marginTop: 5 }}>Please enter a valid number !</Text>}
             </View>
-          </View >
-          <TouchableOpacity
-            onPress={onSubmit}
-            style={{
-              backgroundColor: "#0A79DF",
-              paddingVertical: 12,
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 20,
-              marginVertical: 70,
-            }}
-          >
-            <Text style={{ fontSize: 18, color: "#fff" }}>Get OTP</Text>
-          </TouchableOpacity>
-        </View >
-      </ScrollView >
-    </SafeAreaView >
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 

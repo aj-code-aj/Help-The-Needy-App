@@ -1,14 +1,11 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
-import Home from '../screens/Home';
 import Details from '../screens/Details';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import BottomTabNavigator from './bottomTabNavigator';
-import LoginSignUpMain from '../Core/Authentication/LoginSignup/LoginSignupMain';
 import OTPTextInput from '../Components/OTPTextInput';
+import FilterIcon from '../assets/svg/Filter.svg';
 
 const Stack = createStackNavigator();
-const Tabs = createBottomTabNavigator();
 
 const MainNavigation = ({ route }) => {
   const appIcons = route.params.appIcons;
@@ -22,11 +19,12 @@ const MainNavigation = ({ route }) => {
         name='dashboard'
         component={BottomTabNavigator}
         options={{
-          title: 'Help Needy',
+          title: 'HelpTheNeedy',
           headerStyle: {
             backgroundColor: '#74B9FF',
           },
           headerTintColor: '#fff',
+          headerRight: () => (<FilterIcon width={25} height={25} color="#fff"/>),
           headerBackVisible: false
         }}
         initialParams={{

@@ -34,7 +34,7 @@ function TabBar({
         <MaterialCommunityIcons name="charity" color={'#000000'} size={30} />
       ),
       route: state.routes[1],
-      label: 'Donate',
+      label: 'Help',
       isFocused: state.index === 1,
       notify: unSeenNotifications,
     },

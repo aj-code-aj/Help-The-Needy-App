@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SignupLogin from './Header/SignupLogin';
 import Clipboard from '@react-native-clipboard/clipboard';
+import CustomBackgroundContainer from '../../components/Theme';
 
-const OTPTextInput = ({ route }) => {
+const OTPTextInput = ({ route, navigation }) => {
 
   const { confirmation, signIn } = route.params;
 
@@ -46,6 +47,9 @@ const OTPTextInput = ({ route }) => {
       console.log('CONFIRM OBJ: ', confirmation);
       const res = await confirmation.confirm(OtpVal);
       console.log('VERIFY RESULT:', res);
+      if (res?.user?.uid) {
+        navigation.navigate('MainNavigation');
+      }
     }
     catch (error) {
       console.log('VERIFY ERROR: ', error);
@@ -68,8 +72,7 @@ const OTPTextInput = ({ route }) => {
   const { field1, field2, field3, field4, field5, field6 } = otpFields;
 
   return (
-    <ImageBackground source={require('../../images/bg1.jpeg')}
-      style={{ flex: 1, height: 670 }}>
+    <CustomBackgroundContainer>
       <View style={styles.container}>
         <SignupLogin heading={`Confirmation Code`} />
         <View style={styles.otpView}>
@@ -184,7 +187,7 @@ const OTPTextInput = ({ route }) => {
           <Text style={styles.btnText}>Verify</Text>
         </TouchableOpacity>
       </View>
-    </ImageBackground>
+    </CustomBackgroundContainer>
   );
 };
 

@@ -1,10 +1,12 @@
 import React from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Dimensions, ImageBackground, StyleSheet } from 'react-native';
 
-const backgroundImage = require('../images/bg1.jpeg');
+const { width, height } = Dimensions.get('window');
 
-const CustomNavigationContainer = ({ children }) => {
+const CustomBackgroundContainer = ({ children }) => {
+
+  const backgroundImage = require('../images/bg1.jpeg');
+
   return (
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       {children}
@@ -15,9 +17,10 @@ const CustomNavigationContainer = ({ children }) => {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover', // or 'stretch' or 'contain'
-    // Additional styles for the background image container can be added here
+    resizeMode: 'cover',
+    width: width,
+    height: height
   },
 });
 
-export default CustomNavigationContainer;
+export default CustomBackgroundContainer;

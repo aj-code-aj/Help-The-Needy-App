@@ -31,7 +31,7 @@ const BottomTabNavigator = ({ route }) => {
           initialParams={{ appIcons: route.params.appIcons }}
         />
         <Tabs.Screen
-          name="Donate"
+          name="Help"
           component={Details}
           initialParams={{ productId: 1 }}
         />
