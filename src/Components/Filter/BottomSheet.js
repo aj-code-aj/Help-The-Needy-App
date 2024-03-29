@@ -7,60 +7,52 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const FilterBottomSheet = () => {
+const FilterBottomSheet = ({ bottomSheet }) => {
 
-
-  const [isVisible, setIsVisible] = useState(false);
-  const list = [
-    { title: 'List Item 1' },
-    { title: 'List Item 2' },
-    {
-      title: 'Cancel',
-      containerStyle: { backgroundColor: 'red' },
-      titleStyle: { color: 'white' },
-      onPress: () => setIsVisible(false),
-    },
-  ];
+  const { visible, toggleBottomSheet } = bottomSheet;
 
   return (
     <SafeAreaView>
-      <TouchableOpacity onPress={() => setIsVisible(!isVisible)}>
-        <Image source={require('../../assets/common/MyFilter.png')} style={{ width: 30, height: 35, marginRight: 15 }} />
-      </TouchableOpacity>
-      <BottomSheet isVisible={isVisible}
-        onBackdropPress={() => setIsVisible(!isVisible)}
+      <BottomSheet isVisible={visible}
+        onBackdropPress={toggleBottomSheet}
       >
         <ListItem
           key={''}
           containerStyle={{ borderTopLeftRadius: 30, borderTopRightRadius: 30 }}
-        // onPress={l.onPress}
         >
           <View style={{ flex: 1 }}>
-            <ListItem.Title style={{ paddingBottom: 12, fontWeight: '700', fontSize: 14, color: '#808080' }}>Filter by Category</ListItem.Title>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={{ paddingBottom: 12, fontWeight: '700', fontSize: 14, color: '#808080' }}>Filter by Category</Text>
+              <TouchableOpacity onPress={toggleBottomSheet}>
+                <Ionicons name="close-outline" color="#000" size={28} style={{ marginRight: 10 }} />
+              </TouchableOpacity>
+            </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
               <Button icon={() => <FontAwesome5 name="book" size={18} color="#000" />} mode="elevated" onPress={() => console.log('Pressed')}
                 buttonColor='#fff' textColor='#000'
               >
                 Books
               </Button>
-              <Button icon={() => <FontAwesome5 name="tshirt" color="#000" />} mode="elevated" onPress={() => console.log('Pressed')}
-                textColor='#000' buttonColor='#fff'
-              // style={{ borderColor: '#74B9FF', borderWidth: 2 }}
-              >
-                Clothes
+              <Button icon={() => <MaterialCommunityIcons name="shoe-sneaker" color="#000" size={22} />} mode="elevated" onPress={() => console.log('Pressed')}
+                textColor='#000' buttonColor='#fff'>
+                Shoes
               </Button>
+
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 12 }}>
               <Button icon={() => <FontAwesome6 name="bowl-food" color="#000" size={18} />} mode="elevated" onPress={() => console.log('Pressed')}
                 textColor='#000' buttonColor='#fff'>
                 Food
               </Button>
-              <Button icon={() => <MaterialCommunityIcons name="shoe-sneaker" color="#000" size={22} />} mode="elevated" onPress={() => console.log('Pressed')}
-                textColor='#000' buttonColor='#fff'>
-                Shoes
+              <Button icon={() => <FontAwesome5 name="tshirt" color="#000" />} mode="elevated" onPress={() => console.log('Pressed')}
+                textColor='#000' buttonColor='#fff'
+              >
+                Clothes
               </Button>
             </View>
+
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 12 }}>
               <Button icon={() => <MaterialIcons name="toys" color="#000" size={18} />} mode="elevated" onPress={() => console.log('Pressed')}
                 textColor='#000' buttonColor='#fff'>
@@ -71,6 +63,7 @@ const FilterBottomSheet = () => {
                 Medical
               </Button>
             </View>
+
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 12 }}>
               <Button icon={() => <MaterialIcons name="electrical-services" color="#000" size={18} />} mode="elevated" onPress={() => console.log('Pressed')}
                 textColor='#000' buttonColor='#fff'>
@@ -82,11 +75,27 @@ const FilterBottomSheet = () => {
               </Button>
             </View>
 
-
+            <View style={{ alignItems: 'center' }}>
+              <TouchableOpacity style={{
+                backgroundColor: '#74B9FF',
+                padding: 12,
+                borderRadius: 12,
+                width: '90%',
+                marginTop: 30,
+              }}
+              >
+                <Text style={{ color: "#fff", textAlign: 'center', fontSize: 16 }}>
+                  Apply Filter</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={{ color: '#74B9FF', marginTop: 20, }}>Clear All</Text>
+              </TouchableOpacity>
+            </View>
           </View>
+
         </ListItem>
       </BottomSheet>
-    </SafeAreaView>
+    </SafeAreaView >
   )
 }
 

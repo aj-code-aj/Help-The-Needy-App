@@ -3,7 +3,7 @@ import React from 'react'
 import Details from '../screens/Details';
 import BottomTabNavigator from './bottomTabNavigator';
 import OTPTextInput from '../Components/OTPTextInput';
-import FilterBottomSheet from '../Components/Filter/BottomSheet';
+import Header from '../Simple/Header/Header';
 
 const Stack = createStackNavigator();
 
@@ -19,12 +19,7 @@ const MainNavigation = ({ route }) => {
         name='dashboard'
         component={BottomTabNavigator}
         options={{
-          title: 'HelpTheNeedy',
-          headerStyle: {
-            backgroundColor: '#74B9FF',
-          },
-          headerTintColor: '#fff',
-          headerRight: () => (<FilterBottomSheet />),
+          header: () => (<Header />),
           headerBackVisible: false
         }}
         initialParams={{
