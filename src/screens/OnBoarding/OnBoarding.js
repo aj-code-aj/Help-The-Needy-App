@@ -1,11 +1,9 @@
 import React from 'react';
 import OnBoardingMain from '../../Core/OnBoarding/OnBoardingMain';
 import Carton from '../../assets/common/carton1.svg';
-import Carton2 from '../../assets/common/carton2.svg';
 import { Image } from 'react-native';
 
 const OnBoarding = ({ navigation }) => {
-  console.log('ONboarding');
   const OnBoardDataList = [
     {
       id: '1',

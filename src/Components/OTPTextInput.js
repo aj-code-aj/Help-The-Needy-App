@@ -43,22 +43,22 @@ const OTPTextInput = ({ route, navigation }) => {
     try {
       setOtpSubmit(true);
       const OtpVal = `${field1}${field2}${field3}${field4}${field5}${field6}`;
-      console.log('OTP: ', OtpVal);
-      console.log('CONFIRM OBJ: ', confirmation);
+      // console.log('OTP: ', OtpVal);
+      // console.log('CONFIRM OBJ: ', confirmation);
       const res = await confirmation.confirm(OtpVal);
-      console.log('VERIFY RESULT:', res);
+      // console.log('VERIFY RESULT:', res);
       if (res?.user?.uid) {
         navigation.navigate('MainNavigation');
       }
     }
     catch (error) {
-      console.log('VERIFY ERROR: ', error);
+      // console.log('VERIFY ERROR: ', error);
     }
   }
 
   const fetchCopiedText = async () => {
     const text = await Clipboard.getString();
-    console.log('TEXT CLIPBOARD', text);
+    // console.log('TEXT CLIPBOARD', text);
     text && setOtpFields({
       field1: text[0],
       field2: text[1],

@@ -9,23 +9,22 @@ import CustomRatingBar from '../Components/CustomRatingBar/CustomRatingBar';
 
 const Home = () => {
 
-  console.log('HOME SCREEN');
   return (
     <CustomBackgroundContainer>
       <Text style={{
         color: '#000', fontSize: 25, fontWeight: 900, marginLeft: 12,
         marginVertical: 12
-      }}>Hello ChangeMaker</Text>
+      }}>Welcome</Text>
       <ScrollView>
         <Card
           onPressIn={() => console.log('Clicked')}
           mode="elevated"
-          style={{ marginHorizontal: 20, marginVertical: 20, backgroundColor: '#fff' }}
+          style={{ marginHorizontal: 25, marginVertical: 20, backgroundColor: '#fff', }}
           elevation={5}
         >
           <ImageBackground
             source={require('../assets/common/MultiTshirts.webp')}
-            style={{ height: 232, flex: 1 }}
+            style={{ height: 200, flex: 1 }}
             resizeMode="cover"
           >
             <View style={{ flex: 1, justifyContent: 'flex-end' }}>

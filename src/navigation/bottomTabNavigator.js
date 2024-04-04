@@ -2,9 +2,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { View } from 'react-native'
 import Home from '../screens/Home';
-import Details from '../screens/Details';
+import Details from '../screens/Categories';
 import TabBar from '../Core/Navigation/TabBar/TabBar';
 import appIcons from '../theme/appIcons';
+import Categories from '../screens/Categories';
 
 const Tabs = createBottomTabNavigator();
 const BottomTabNavigator = ({ route }) => {
@@ -32,12 +33,12 @@ const BottomTabNavigator = ({ route }) => {
         />
         <Tabs.Screen
           name="Help"
-          component={Details}
+          component={Categories}
           initialParams={{ productId: 1 }}
         />
         <Tabs.Screen
           name="You"
-          component={Details}
+          component={Categories}
           initialParams={{ productId: 1 }}
         />
       </Tabs.Navigator>

@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
-import Details from '../screens/Details';
+import Details from '../screens/Categories';
 import BottomTabNavigator from './bottomTabNavigator';
 import OTPTextInput from '../Components/OTPTextInput';
 import Header from '../Simple/Header/Header';

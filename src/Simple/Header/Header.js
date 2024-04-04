@@ -1,33 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FilterBottomSheet from '../../Components/Filter/BottomSheet';
 import { Searchbar } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { City, State } from 'country-state-city';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { data } from '../../data/cities';
 
 const Header = () => {
 
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
-  const [cities, setCities] = useState([]);
   const [filteredCity, setFilteredCity] = useState([]);
   const [searchedCity, setSearchedCity] = useState('');
-
-  useEffect(() => {
-
-    let fetchAllCities = [];
-    let states = State.getStatesOfCountry('IN');
-    states.forEach((state) => {
-      let stateofCity = City.getCitiesOfState('IN', state.isoCode);
-      stateofCity.forEach((city) => (
-        fetchAllCities = [...fetchAllCities, { name: city.name, code: state.name }]
-      ))
-    })
-    setCities(fetchAllCities);
-  }, [])
-
 
   const handleSelectedCity = (city, code) => {
     setSearchedCity(`${city}, ${code}`);
@@ -52,7 +37,7 @@ const Header = () => {
     if (e && e.at(0) != e.at(0).toUpperCase()) {
       e = e.at(0).toUpperCase() + e.slice(1);
     }
-    const filtered = cities.filter(({ name }) => name.includes(e));
+    const filtered = data.filter(({ name }) => name.includes(e));
     setFilteredCity(filtered.slice(0, 5));
   }
 

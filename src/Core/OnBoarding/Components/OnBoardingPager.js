@@ -51,7 +51,7 @@ const OnBoardingPager = ({ onSkipPressed, OnBoardDataList }) => {
           )
         })}
       </Swiper>
-    </View >
+    </View>
   )
 }
 
